@@ -17,7 +17,7 @@ urlpatterns = [
     # change_password_with-otp  or Verify email
     path('request-otp/', views.RequestOTPView.as_view(), name='request_password_reset_otp'),
 
-    path('verify-otp/', views.VerifyOTPForPasswordChangeView.as_view(), name='verify_otp'),
+    path('verify-otp-for-password/', views.VerifyOTPForPasswordChangeView.as_view(), name='verify_otp'),
     path('reset-password/', views.ChangePasswordWithOTPView.as_view(), name='reset_password_with_otp'),
 
 

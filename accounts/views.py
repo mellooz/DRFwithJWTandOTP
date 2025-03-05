@@ -238,11 +238,11 @@ class ChangePasswordWithOTPView(APIView):
 def getRoutes(request):
     routes = [
     "/register/",
-    "/verify-otp/",
+    "/verify-email/",
     "/login/",
     "/change-password/",
     "/request-otp/",
-    "/verify-change-password-with-otp/",
+    "/verify-otp-for-password/",
     "/reset-password/",
     "/profile/",
     "/token/refresh/",
