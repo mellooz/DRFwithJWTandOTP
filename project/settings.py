@@ -26,9 +26,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# def strtobool(value):
-#     return value.lower() in ("true", "1", "yes")
-# DEBUG = strtobool(os.getenv("DEBUG", "False"))
+def strtobool(value):
+    return value.lower() in ("true", "1", "yes")
+DEBUG = strtobool(os.getenv("DEBUG", "False"))
 DEBUG = True
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
