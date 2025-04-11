@@ -40,6 +40,9 @@ CREATE_SUPERUSER = os.getenv("CREATE_SUPERUSER") == "True"
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
+    # channels
+    'channels',
     # jazzmin make admin dashboard better
     'jazzmin',
 
@@ -57,6 +60,7 @@ INSTALLED_APPS = [
 
     # our app
     'accounts.apps.AccountsConfig',
+    'chat.apps.ChatConfig',
 
 
 
@@ -93,7 +97,7 @@ AUTHENTICATION_BACKENDS = (
 
 # Configs Used with JWT
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=50),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -149,7 +153,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR , 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -161,10 +165,17 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'project.wsgi.application'
-
-
+###############################################################################################################
+# WSGI_APPLICATION = 'project.wsgi.application'
+ASGI_APPLICATION = 'project.asgi.application'
+# docker run --name redis -p 6379:6379 -d redis
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+CHANNELS_DEV_MODE = True
+###############################################################################################################
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
